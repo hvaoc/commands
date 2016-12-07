@@ -1,1 +1,22 @@
 [Source](https://salferrarello.com/mac-pfctl-port-forwarding/)
+
+## Forward Port 80 and 443 with Mac pfctl Port Forwarding
+
+```
+echo "
+rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 8080
+rdr pass inet proto tcp from any to any port 443 -> 127.0.0.1 port 8443
+" | sudo pfctl -ef -
+```
+
+## Remove Port Forwarding
+
+```
+sudo pfctl -F all -f /etc/pf.conf
+```
+
+## Display Your Current Port Forwarding Rules
+
+```
+sudo pfctl -s nat
+```
